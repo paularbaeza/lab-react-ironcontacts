@@ -36,7 +36,7 @@ function App() {
 
  const deleteContact = (id) => {
 
-  const contactsDisplayedFiltered = contactsToDisplay.filter((eachContact)=> {
+  const contactsDisplayedFiltered = contactsToDisplay.filter((eachContact) => {
     if (eachContact.id !== id) 
     {return eachContact}
 
@@ -49,16 +49,19 @@ function App() {
   return (
     <div className="App">
       <h1>IronContacts</h1>
-      <button onClick={addContact}>Add Random Contact</button>
-      <button onClick={popularitySorted}>Sort by popularity</button>
-      <button onClick={nameSorted}>Sort by name</button>
+      <div id="top-buttons">
+      <button className="top-button" onClick={addContact}>Add Random Contact</button>
+      <button className="top-button" onClick={popularitySorted}>Sort by popularity</button>
+      <button className="top-button" onClick={nameSorted}>Sort by name</button>
+      </div>
 
 
       {contactsToDisplay.map((eachContact)=> {
         return (
+          <div className="table">
           <table key = {eachContact.id}>
           <thead>
-          <tr>
+          <tr>         
             <th>Picture</th>
             <th>Name</th>
             <th>Popularity</th>
@@ -69,15 +72,17 @@ function App() {
           </thead>
           <tbody>
           <tr>
+          
            <td><img src={eachContact.pictureUrl} alt="contact" width="100" /></td>
            <td><p>{eachContact.name}</p></td>
            <td> <p>{eachContact.popularity.toFixed(2)}</p></td>
            <td>{eachContact.wonOscar  ? "🏆" : ""}</td>
            <td>{eachContact.wonEmmy ? "🏆" : ""}</td>
-           <td><button onClick={() => deleteContact(eachContact.id)}>Delete</button></td>
+           <td><button className= "delete-btn" onClick={() => deleteContact(eachContact.id)}>Delete</button></td>
           </tr>
           </tbody>
           </table>
+          </div>
         )
       })}
 
