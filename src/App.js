@@ -6,9 +6,22 @@ import {useState} from "react"
 function App() {
 
   const [contactsToDisplay, setContactsToDisplay] =useState(allContacts.slice(0,5))
+
+  const addContact =()=> {
+    let randomContactIndex =Math.floor(Math.random() * allContacts.length)
+    let randomContact = allContacts[randomContactIndex]  
+
+    const contactsDisplayedCopy = [...contactsToDisplay]
+    contactsDisplayedCopy.unshift (randomContact)
+
+    setContactsToDisplay(contactsDisplayedCopy)
+  }
+
+
   return (
     <div className="App">
       <h1>IronContacts</h1>
+      <button onClick={addContact}>Add Random Contact</button>
       {contactsToDisplay.map((eachContact)=> {
         return (
           <table>
