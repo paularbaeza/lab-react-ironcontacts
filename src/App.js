@@ -33,7 +33,19 @@ function App() {
 
   }
 
+
+ const deleteContact = (id) => {
+
+  const contactsDisplayedFiltered = contactsToDisplay.filter((eachContact)=> {
+    if (eachContact.id !== id) 
+    {return eachContact}
+
   
+ })
+ setContactsToDisplay (contactsDisplayedFiltered)
+}
+
+
   return (
     <div className="App">
       <h1>IronContacts</h1>
@@ -44,21 +56,27 @@ function App() {
 
       {contactsToDisplay.map((eachContact)=> {
         return (
-          <table>
+          <table key = {eachContact.id}>
+          <thead>
           <tr>
             <th>Picture</th>
             <th>Name</th>
             <th>Popularity</th>
             <th>Won Oscar</th>
             <th>Won Emmy</th>
+            <th>Actions</th>
           </tr>
+          </thead>
+          <tbody>
           <tr>
            <td><img src={eachContact.pictureUrl} alt="contact" width="100" /></td>
            <td><p>{eachContact.name}</p></td>
            <td> <p>{eachContact.popularity.toFixed(2)}</p></td>
            <td>{eachContact.wonOscar  ? "🏆" : ""}</td>
            <td>{eachContact.wonEmmy ? "🏆" : ""}</td>
+           <td><button onClick={() => deleteContact(eachContact.id)}>Delete</button></td>
           </tr>
+          </tbody>
           </table>
         )
       })}
