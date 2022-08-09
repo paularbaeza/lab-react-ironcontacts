@@ -18,10 +18,30 @@ function App() {
   }
 
 
+  const popularitySorted =() => {
+    const contactsDisplayedCopy = [...contactsToDisplay]
+
+    contactsDisplayedCopy.sort ((contact1, contact2)=> contact1.popularity > contact2.popularity ? 1 : -1)
+    setContactsToDisplay(contactsDisplayedCopy)
+  }
+
+  const nameSorted =() => {
+    const contactsDisplayedCopy = [...contactsToDisplay]
+
+    contactsDisplayedCopy.sort ((contact1, contact2)=> contact1.name > contact2.name ? 1 : -1)
+    setContactsToDisplay(contactsDisplayedCopy)
+
+  }
+
+  
   return (
     <div className="App">
       <h1>IronContacts</h1>
       <button onClick={addContact}>Add Random Contact</button>
+      <button onClick={popularitySorted}>Sort by popularity</button>
+      <button onClick={nameSorted}>Sort by name</button>
+
+
       {contactsToDisplay.map((eachContact)=> {
         return (
           <table>
